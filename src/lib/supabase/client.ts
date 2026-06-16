@@ -1,11 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
+import { Database } from '@/types/schema';
 
-// On utilise les variables d'environnement pour sécuriser les clés
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-if (!supabaseUrl || !supabaseKey) {
-  console.error("Attention : Les clés Supabase sont manquantes dans votre fichier .env.local");
-}
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey);

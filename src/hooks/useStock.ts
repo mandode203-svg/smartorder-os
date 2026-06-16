@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase/client';
+import { Product } from '@/types/schema';
 
-export const useStock = (tenantId: string) => {
+export function useStock() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    async function fetchProducts() {
-      const { data } = await supabase
-        .from('products')
-        .select('*')
-        .eq('tenant_id', tenantId);
-      if (data) setProducts(data);
-    }
-    fetchProducts();
-  }, [tenantId]);
+    // Ta logique de récupération de données ici
+  }, []);
 
-  return { products };
-};
+  return { products, setProducts };
+}
